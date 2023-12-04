@@ -1,4 +1,13 @@
+from flask import Flask, jsonify
 import yfinance as yf
+import numpy as np
+from datetime import datetime
+
+app = Flask(__name__)
+
+@app.route('/top-ten-sharpe-ratios')
+def top_ten_sharpe_ratios():
+    import yfinance as yf
 import numpy as np
 from datetime import datetime
 
@@ -4325,3 +4334,8 @@ for ticker, ratio in sorted_tickers[:10]:
     print(f"Sharpe Ratio: {ratio}")
     print(f"Action: {action}")
     print("---------------------")
+
+    return jsonify({'top_ten_sharpe_ratios': top_ten})
+
+if __name__ == '__main__':
+    app.run(debug=True)
